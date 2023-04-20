@@ -1,0 +1,48 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.row {
+  margin: 0px;
+}
+.shadow {
+  box-shadow: 5 15px 25px rgba(0, 0, 0, 0.06);
+}
+.card-content {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.create-account-btn {
+  display: flex;
+  justify-content: end;
+  margin: 10px 25px;
+  margin-top: 25px;
+}
+
+.create-account {
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  border: none;
+  padding: 7px 25px;
+  border-radius: 7px;
+  background-color: #0070f3;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.create-account:hover {
+  background: rgba(0, 118, 255, 0.9);
+  box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+}
+
+.main-card-content {
+  padding: 25px;
+  margin: 0px 5px;
+}
