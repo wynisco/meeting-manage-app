@@ -8,12 +8,15 @@
 .shadow {
   box-shadow: 5 15px 25px rgba(0, 0, 0, 0.06);
 }
+
+.content-text {
+  white-space: nowrap;
+}
 .card-content {
-  width: 100%;
-  display: flex;
-  justify-content: start;
-  flex-direction: column;
-  flex-wrap: wrap;
+  padding: 15px;
+  margin: 5px auto;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .create-account-btn {
@@ -45,4 +48,12 @@
 .main-card-content {
   padding: 25px;
   margin: 0px 5px;
+}
+
+@media only screen and (min-width: 600px) {
+  .card-content-parent {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: 47% 47%;
+  }
 }
