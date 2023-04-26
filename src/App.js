@@ -1,7 +1,5 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Home from "./components/home/index";
-import Form from "./components/form";
+import Home from "./pages/home/index";
+import Form from "./pages/createMeeting/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {

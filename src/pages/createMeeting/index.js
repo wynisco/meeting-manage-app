@@ -1,24 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Switch from "@mui/material/Switch";
-import TableHead from "@mui/material/TableHead";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import FormGroup from "@mui/material/FormGroup";
-import { FormLabel } from "@mui/material";
-import Checkbox from "@mui/material/Checkbox";
 import "./form.css";
 import { useNavigate } from "react-router";
-import Apis from "../api/index";
+import Apis from "../../components/api/index";
 
 export default function Form() {
   const navigate = useNavigate();
