@@ -7,10 +7,10 @@ const useGetQuery = () => {
   const [error, setError] = useState();
 
   const getQuery = async (params) => {
-    const { url = "", onSuccess = () => {}, onFail = () => {} } = params;
+    const { url = "", onSuccess = () => {}, onFail = () => {}, options = {} } = params;
     setLoading(true);
     try {
-      const { data: apiData = {} } = await apiClient.get(url);
+      const { data: apiData = {} } = await apiClient.get(url, options);
       const result = apiData?.result || apiData?.data;
       setData(apiData);
       await onSuccess(apiData);

@@ -14,6 +14,11 @@ const Account = ({ email = {}, date }) => {
       url:
         apiUrls.getMeetings +
         `?page_size=200&to=${formattedDate}&from=${formattedDate}`,
+        options: {
+          headers: {
+            email: email?.email
+          }
+        }
     });
   }, [date]);
 
