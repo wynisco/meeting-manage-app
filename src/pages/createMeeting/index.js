@@ -2,10 +2,12 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import "./form.css";
 import { useNavigate } from "react-router";
-import Apis from "../../components/api/index";
+import { useParams } from "react-router-dom";
 
 export default function Form() {
   const navigate = useNavigate();
+  const { email } = useParams();
+
   const [topic, setTopic] = useState("");
   const [duration, setDuration] = useState();
   const [startTime, setStartTime] = useState("");
@@ -33,70 +35,81 @@ export default function Form() {
       auto_recording: "cloud",
     },
   };
-  const createMeets = async () => {
-    const data = await Apis.createMeets(body);
-    console.log(data);
-  };
+  const createMeets = async () => {};
 
   return (
     <>
       <div className="back-btn">
         <button className="back" onClick={() => navigate("/")}>
-          ⬅ Back
+          Back
         </button>
       </div>
       <div className="main-form-card-outer">
         <div className="main-form-card">
           <span className="main-form-card-title">Create a new Meeting</span>
-          <div>
-            <span className="topic">Topic : </span>
-            <input
-              type="text"
-              className="topic"
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
-            ></input>
-          </div>
 
-          <div>
-            <span className="duration">Duration : </span>
-            <input
-              type="number"
-              className="duration"
-              value={duration}
-              onChange={(e) => setDuration(e.target.value)}
-            ></input>
-          </div>
-
-          <div>
-            <span className="start-time">Start At : </span>
-            <input
-              type="time"
-              id="startTime"
-              className="startTime"
-              min="09:00"
-              max="18:00"
-              value={startTime}
-              onChange={(e) => setStartTime(e.target.value)}
-            ></input>
-          </div>
-
-          <div>
-            <span className="password">Password : </span>
-
-            <input
-              type="text"
-              id="password"
-              className="password"
-              value={password}
-              placeholder="password not greater than 10"
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-          </div>
+          <table>
+            <tr>
+              <td>Email : </td>
+              <td className="filled pl-2">{email}</td>
+            </tr>
+            <tr>
+              <td>Topic : </td>
+              <td>
+                {" "}
+                <input
+                  type="text"
+                  className="filled"
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                ></input>
+              </td>
+            </tr>
+            <tr>
+              <td>Duration : </td>
+              <td>
+                {" "}
+                <input
+                  type="number"
+                  className="filled"
+                  value={duration}
+                  onChange={(e) => setDuration(e.target.value)}
+                ></input>
+              </td>
+            </tr>
+            <tr>
+              <td>Start At :</td>
+              <td>
+                {" "}
+                <input
+                  type="datetime-local"
+                  id="startTime"
+                  className="filled"
+                  min={new Date().toISOString().slice(0, 16)}
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                ></input>
+              </td>
+            </tr>
+            <tr>
+              <td>Password : </td>
+              <td>
+                {" "}
+                <input
+                  type="text"
+                  id="password"
+                  className="filled"
+                  value={password}
+                  placeholder="password not greater than 10"
+                  onChange={(e) => setPassword(e.target.value)}
+                ></input>
+              </td>
+            </tr>
+          </table>
 
           <button className="submit" onClick={() => createMeets()}>
             {" "}
-            Submit 👍
+            Submit
           </button>
         </div>
       </div>

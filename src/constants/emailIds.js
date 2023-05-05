@@ -1,9 +1,18 @@
 const EMAIL_IDS = [
   {
-    email: "harshgupta.harry@gmail.com",
+    email: "data@wynisco.com",
   },
   {
-    email: "guptaharsh0506@gmail.com",
+    email: "qa@wynisco.com",
+  },
+  {
+    email: "wyniscouser1@gmail.com",
+  },
+  {
+    email: "sachin@wynisco.com",
+  },
+  {
+    email: "react@wynisco.com",
   },
 ];
 

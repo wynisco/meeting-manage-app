@@ -3,14 +3,15 @@
   justify-content: center;
   align-items: center;
 }
+
 .main-form-card {
   width: 100%;
   max-width: 448px;
   display: flex;
-  padding: 35px 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px 10px 30px 10px;
   margin-top: 10px;
   border-radius: 4px;
   box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px,
@@ -21,16 +22,19 @@
 .main-form-card-title {
   display: block;
   font-size: 20px;
-  padding-bottom: 15px;
+  padding-bottom: 30px;
   color: #1a1f36;
 }
-.topic,
-.duration,
-.start-time,
-.password {
+
+td {
   font-size: 14px;
   font-weight: 600;
 }
+.filled {
+  width: 250px;
+  margin: 10px;
+}
+
 input {
   font-size: 16px;
   line-height: 28px;
@@ -46,18 +50,11 @@ input {
     rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
     rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
-.topic,
-.duration,
-.startTime,
-.password {
-  width: 250px;
-  margin: 10px;
-}
 
 .back-btn {
   display: flex;
   justify-content: end;
-  margin: 10px 25px;
+  margin: 5px 25px;
   margin-top: 25px;
 }
 
@@ -67,13 +64,12 @@ input {
   outline: 0;
   cursor: pointer;
   border: none;
-  padding: 7px 25px;
+  padding: 5px 25px;
   border-radius: 7px;
   background-color: #0070f3;
   color: white;
   font-weight: 500;
   font-size: 14px;
-  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 .submit {
@@ -81,5 +77,4 @@ input {
 }
 .back:hover {
   background: rgba(0, 118, 255, 0.9);
-  box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
 }

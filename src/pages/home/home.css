@@ -5,8 +5,10 @@
 .row {
   margin: 0px;
 }
-.shadow {
-  box-shadow: 5 15px 25px rgba(0, 0, 0, 0.06);
+.shadowCard {
+  border-radius: 15px;
+  box-shadow: -4px 4px 12px -10px rgba(0, 0, 0, 0.75),
+    4px -4px 12px -10px rgba(0, 0, 0, 0.75);
 }
 
 .content-text {
@@ -37,12 +39,10 @@
   color: white;
   font-weight: 500;
   font-size: 14px;
-  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 .create-account:hover {
   background: rgba(0, 118, 255, 0.9);
-  box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
 }
 
 .main-card-content {

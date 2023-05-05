@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/create-meeting" element={<Form />} />
+        <Route path="/create-meeting/:email" element={<Form />} />
       </Routes>
     </BrowserRouter>
   );
