@@ -10,7 +10,11 @@
   box-shadow: -4px 4px 12px -10px rgba(0, 0, 0, 0.75),
     4px -4px 12px -10px rgba(0, 0, 0, 0.75);
 }
-
+.card-heading {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 .content-text {
   white-space: nowrap;
 }

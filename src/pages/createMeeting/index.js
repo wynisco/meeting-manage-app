@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import "./form.css";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
+import usePostQuery from "../../hooks/postQuery.hook.js";
+import { apiUrls } from "../../apis/urls";
 
 export default function Form() {
+  const { postQuery, loading, data = {} } = usePostQuery();
   const navigate = useNavigate();
   const { email } = useParams();
 
@@ -13,29 +16,38 @@ export default function Form() {
   const [startTime, setStartTime] = useState("");
   const [password, setPassword] = useState("");
 
-  const body = {
-    topic: topic,
-    type: 2,
-    start_time: startTime,
-    duration: duration,
-    timezone: "UTC",
-    password: password,
-    agenda: "Test Agenda",
-    settings: {
-      host_video: false,
-      participant_video: false,
-      cn_meeting: false,
-      in_meeting: false,
-      join_before_host: false,
-      mute_upon_entry: true,
-      watermark: false,
-      use_pmi: false,
-      approval_type: 2,
-      audio: "both",
-      auto_recording: "cloud",
-    },
+  const createMeets = async () => {
+    console.log(topic + duration + startTime + password);
+
+    postQuery({
+      url: apiUrls.createMeeting,
+      postData: {
+        topic: topic,
+        type: 2,
+        start_time: startTime,
+        duration: duration,
+        timezone: "UTC",
+        password: password,
+        agenda: "Test Agenda",
+        settings: {
+          host_video: false,
+          participant_video: false,
+          cn_meeting: false,
+          in_meeting: false,
+          join_before_host: false,
+          mute_upon_entry: true,
+          watermark: false,
+          use_pmi: false,
+          approval_type: 2,
+          audio: "both",
+          auto_recording: "cloud",
+        },
+      },
+      headers: {
+        email: email,
+      },
+    });
   };
-  const createMeets = async () => {};
 
   return (
     <>

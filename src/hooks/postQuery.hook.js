@@ -7,10 +7,18 @@ const usePostQuery = () => {
   const [error, setError] = useState();
 
   const postQuery = async (params) => {
-    const { url, onSuccess = () => {}, onFail = () => {}, postData } = params;
+    const {
+      url,
+      onSuccess = () => {},
+      onFail = () => {},
+      postData = {},
+      headers = {},
+    } = params;
     setLoading(true);
     try {
-      const { data: apiData = {} } = await apiClient.post(url, postData);
+      const { data: apiData = {} } = await apiClient.post(url, postData, {
+        headers: headers,
+      });
       if (apiData?.status === "failed") {
         return;
       }

@@ -27,10 +27,10 @@ const Account = ({ email = {}, date }) => {
   return (
     <>
       <div className="shadowCard">
-        <div className=" d-flex h4 justify-content-between p-3 font-weight-bold">
+        <div className="card-heading h4 p-3 font-weight-bold">
           <div>{email?.email}</div>
           <button
-            className="create-account"
+            className="create-account my-1"
             onClick={() => navigate("/create-meeting/" + email?.email)}
           >
             Create Meeting
