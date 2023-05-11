@@ -17,8 +17,6 @@ export default function Form() {
   const [password, setPassword] = useState("");
 
   const createMeets = async () => {
-    console.log(topic + duration + startTime + password);
-
     postQuery({
       url: apiUrls.createMeeting,
       postData: {
@@ -119,9 +117,13 @@ export default function Form() {
             </tr>
           </table>
 
-          <button className="submit" onClick={() => createMeets()}>
-            {" "}
-            Submit
+          <button
+            className="submit"
+            onClick={() => {
+              createMeets();
+            }}
+          >
+             Submit
           </button>
         </div>
       </div>

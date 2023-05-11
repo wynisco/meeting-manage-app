@@ -37,20 +37,25 @@ const Account = ({ email = {}, date }) => {
           </button>
         </div>
 
-        <div className="rounded-lg  p-4 p-xl-4 mb-4 position-relative overflow-hidden card-content-parent">
+        <div className="rounded-lg  p-4 p-xl-4 mb-4 position-relative overflow-hidden">
           {loading ? (
-            <div className="card-content m-2 text-center">Loading...</div>
-          ) : null}
-          {meetings.length === 0 ? (
-            <div className="card-content m-2 text-center">No Meetings</div>
+            <div className="card-content card-content-center m-2 text-center">
+              Loading...
+            </div>
+          ) : meetings.length === 0 ? (
+            <div className="card-content card-content-center m-2 text-center">
+              No Meetings
+            </div>
           ) : (
-            meetings.map((row) => {
-              return (
-                <div className="card-content shadow ">
-                  <Meeting meeting={row} />
-                </div>
-              );
-            })
+            <div className="card-content-parent">
+              {meetings.map((row) => {
+                return (
+                  <div className="card-content shadow ">
+                    <Meeting meeting={row} />
+                  </div>
+                );
+              })}
+            </div>
           )}
         </div>
       </div>

@@ -10,7 +10,7 @@ const Meeting = ({ meeting }) => {
       </div>
       <div className=" d-flex justify-content-start">
         <span className="font-weight-bold mr-1 content-text">Duration:</span>
-        {meeting.duration}
+        {meeting.duration}min
       </div>
       <div className=" d-flex justify-content-start">
         <span className="font-weight-bold mr-1 content-text">Start At: </span>
