@@ -12,8 +12,11 @@ export default function TableForm() {
   return (
     <>
       <div className="d-flex justify-content-between align-items-center mx-4 my-2">
-        <div>
+        <div className="">
           <DatePicker date={date} onChange={setDate} />
+          <div className="mt-3">
+            <a href="/calender">Calender View</a>
+          </div>
         </div>
         <div className="font-weight-bold h4">Zoom Ledger</div>
       </div>
