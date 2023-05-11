@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./home.css";
-// import Data from "../data/index";
-// import Apis from "../../api/index";
 import Account from "./account";
 import EMAIL_IDS from "../../constants/emailIds";
 import DatePicker from "../../components/datePicker";

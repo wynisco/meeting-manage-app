@@ -22,11 +22,11 @@ export default function Form() {
       postData: {
         topic: topic,
         type: 2,
-        start_time: startTime,
+        start_time: new Date(startTime),
         duration: duration,
-        timezone: "UTC",
+        timezone: "Asia/Kolkata",
         password: password,
-        agenda: "Test Agenda",
+        agenda: topic,
         settings: {
           host_video: false,
           participant_video: false,
@@ -60,7 +60,7 @@ export default function Form() {
 
           <table>
             <tr>
-              <td>Email : </td>
+              <td>Emails : </td>
               <td className="filled pl-2">{email}</td>
             </tr>
             <tr>
@@ -72,6 +72,7 @@ export default function Form() {
                   className="filled"
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
+                  placeholder="Topic of meeting"
                 ></input>
               </td>
             </tr>
@@ -84,6 +85,7 @@ export default function Form() {
                   className="filled"
                   value={duration}
                   onChange={(e) => setDuration(e.target.value)}
+                  placeholder="In mins"
                 ></input>
               </td>
             </tr>
@@ -123,7 +125,7 @@ export default function Form() {
               createMeets();
             }}
           >
-             Submit
+            Submit
           </button>
         </div>
       </div>
