@@ -74,6 +74,8 @@ input {
 }
 .submit {
   margin-top: 35px;
+  text-align: center;
+  width: 6rem;
 }
 .back:hover {
   background: rgba(0, 118, 255, 0.9);

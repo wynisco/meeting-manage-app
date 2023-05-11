@@ -5,9 +5,11 @@ import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 import usePostQuery from "../../hooks/postQuery.hook.js";
 import { apiUrls } from "../../apis/urls";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Form() {
-  const { postQuery, loading, data = {} } = usePostQuery();
+  const { postQuery, loading, data } = usePostQuery();
   const navigate = useNavigate();
   const { email } = useParams();
 
@@ -16,7 +18,22 @@ export default function Form() {
   const [startTime, setStartTime] = useState("");
   const [password, setPassword] = useState("");
 
+  const clear = () => {
+    setTopic("");
+    setDuration();
+    setStartTime("");
+    setPassword("");
+  };
+
+  const success = () => toast.success("Meeting Created");
+  const error = () => toast.error("All Fields are required");
+
   const createMeets = async () => {
+    if (!(topic && duration && startTime && password)) {
+      error();
+      return 0;
+    }
+
     postQuery({
       url: apiUrls.createMeeting,
       postData: {
@@ -49,6 +66,7 @@ export default function Form() {
 
   return (
     <>
+      <ToastContainer />
       <div className="back-btn">
         <button className="back" onClick={() => navigate("/")}>
           Back
@@ -118,12 +136,22 @@ export default function Form() {
           </table>
 
           <button
-            className="submit"
+            className="btn btn-primary submit"
+            type="button"
+            disabled={loading ? true : false}
             onClick={() => {
               createMeets();
             }}
           >
-             Submit
+            {loading ? (
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            ) : (
+              "Submit"
+            )}
           </button>
         </div>
       </div>
