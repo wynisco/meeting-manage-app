@@ -36,6 +36,9 @@ export default function Form() {
 
     postQuery({
       url: apiUrls.createMeeting,
+      onSuccess: () => {
+        success();
+      },
       postData: {
         topic: topic,
         type: 2,
