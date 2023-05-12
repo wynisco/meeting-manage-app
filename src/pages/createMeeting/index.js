@@ -20,7 +20,7 @@ export default function Form() {
 
   const clear = () => {
     setTopic("");
-    setDuration();
+    setDuration("");
     setStartTime("");
     setPassword("");
   };
@@ -29,7 +29,7 @@ export default function Form() {
   const error = () => toast.error("All Fields are required");
 
   const createMeets = async () => {
-    if (!(topic && duration && startTime && password)) {
+    if (!(topic && duration && startTime)) {
       error();
       return 0;
     }
@@ -38,6 +38,7 @@ export default function Form() {
       url: apiUrls.createMeeting,
       onSuccess: () => {
         success();
+        clear();
       },
       postData: {
         topic: topic,
