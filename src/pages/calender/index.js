@@ -75,8 +75,8 @@ export default function Calender() {
           } else {
             // Render Demo Email ID cells
             // console.log(data, "datadatadata");
-            const meetings = data[EMAIL_ID_STRING_ARRAY[i]]
-              ? data[EMAIL_ID_STRING_ARRAY[i]][displayHour]
+            const meetings = data[EMAIL_ID_STRING_ARRAY[j]]
+              ? data[EMAIL_ID_STRING_ARRAY[j]][displayHour]
               : [];
             cells.push(
               <td key={`col-${j}`} style={styles.cell}>
