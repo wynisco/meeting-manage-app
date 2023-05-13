@@ -2,16 +2,23 @@ import React from "react";
 
 const Meetings = ({ meetings = [] }) => {
   return (
-    <div>
+    <div style={{ paddingBottom: 30 }}>
       {meetings?.map((meet, i) => {
         return (
           <div
             style={{
-              borderBottomWidth: 1,
-              borderColor: "grey",
+              background: "#57a5ff",
+              color: "white",
+              borderBottom: "2px solid white",
+              justifyContent: "space-between",
+              flexDirection: "row",
+              display: "flex",
+              paddingRight: 10,
+              paddingLeft: 10,
             }}
           >
-            {i + 1}. {meet?.topic}
+            <div>{meet?.topic}</div>
+            <div style={{ width: 70, textAlign: "right" }}>60 mins</div>
           </div>
         );
       })}

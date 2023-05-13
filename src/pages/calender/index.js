@@ -6,20 +6,24 @@ import EMAIL_IDS, { EMAIL_ID_STRING_ARRAY } from "../../constants/emailIds";
 import useGetQuery from "../../hooks/getQuery.hook.js";
 import { apiUrls } from "../../apis/urls";
 import Meetings from "./meetings";
+import Loader from "../../components/loader";
+import moment from "moment";
 
 export default function Calender() {
   const { getQuery, loading, data = {} } = useGetQuery();
   const [date, setDate] = useState(new Date());
-  const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
+    const formattedDate = moment(date).format("yyyy-MM-DD");
     getQuery({
-      url: apiUrls.getMeetingsByHour,
-      options: {
-        headers: {
-          email: "data@wynisco.com",
-        },
-      },
+      url:
+        apiUrls.getMeetingsByHour +
+        `?page_size=200&to=${formattedDate}&from=${formattedDate}`,
+      // options: {
+      //   headers: {
+      //     email: "data@wynisco.com",
+      //   },
+      // },
     });
     console.log(data);
   }, [date]);
@@ -30,7 +34,6 @@ export default function Calender() {
     },
     cell: {
       border: "1px solid black",
-      padding: "10px",
     },
   };
 
@@ -39,14 +42,14 @@ export default function Calender() {
     const row = 24;
 
     const renderTableHeader = () => {
-      const headers = ["Timing"];
+      const headers = ["Hour"];
 
       for (let i = 0; i < EMAIL_IDS.length; i++) {
         headers.push(EMAIL_IDS[i].email);
       }
 
       return headers.map((header, index) => (
-        <th key={index} style={styles.cell}>
+        <th key={index} className="header-cell">
           {header}
         </th>
       ));
@@ -68,7 +71,7 @@ export default function Calender() {
             // }
 
             cells.push(
-              <td key={`col-${j}`} style={styles.cell}>
+              <td key={`col-${j}`} className="hour-cell">
                 {`${displayHour}`}
               </td>
             );
@@ -80,7 +83,6 @@ export default function Calender() {
               : [];
             cells.push(
               <td key={`col-${j}`} style={styles.cell}>
-                {/* demo@example.com */}
                 <Meetings meetings={meetings || []} />
               </td>
             );
@@ -104,18 +106,17 @@ export default function Calender() {
   };
 
   return (
-    <>
+    <div className="main-container">
+      {loading ? <Loader /> : null}
       <div className="d-flex justify-content-between align-items-center mx-4 my-2">
-        <div className="">
+        <div>
           <DatePicker date={date} onChange={setDate} />
-          <div className="mt-3">
-            <a href="/">Listing View</a>
-          </div>
         </div>
         <div className="font-weight-bold h4">Zoom Ledger</div>
       </div>
-      <div className=" mx-2 mb-3 d-flex justify-content-center">{Table()}</div>
-      {/* <div>sdf+ {data}</div> */}
-    </>
+      <div className="table-container">
+        <Table />
+      </div>
+    </div>
   );
 }
