@@ -35,15 +35,22 @@ export default function Calender() {
   };
 
   const Table = () => {
+    const EMAIL_IDS = ["email1@gmail.com", "email2@gmail.com"]; // Replace with your email IDs
     const col = EMAIL_IDS.length + 1;
-    const row = 24;
+    const row = 25;
+
+    const data1 = {
+      6: ["meeting1", "meeting2"],
+      7: ["meeting1"],
+    }; // Replace with your actual data for email1@gmail.com
+
+    const data2 = {
+      6: ["meeting3", "meeting4"],
+      7: ["meeting2", "meeting3"],
+    }; // Replace with your actual data for email2@gmail.com
 
     const renderTableHeader = () => {
-      const headers = ["Timing"];
-
-      for (let i = 0; i < EMAIL_IDS.length; i++) {
-        headers.push(EMAIL_IDS[i].email);
-      }
+      const headers = ["Time", ...EMAIL_IDS];
 
       return headers.map((header, index) => (
         <th key={index} style={styles.cell}>
@@ -62,26 +69,26 @@ export default function Calender() {
           let displayHour = i + 1;
           if (j === 0) {
             // Render row label
-
-            // if (displayHour > 12) {
-            //   displayHour -= 12;
-            // }
-
             cells.push(
               <td key={`col-${j}`} style={styles.cell}>
                 {`${displayHour}`}
               </td>
             );
           } else {
-            // Render Demo Email ID cells
-            // console.log(data, "datadatadata");
-            const meetings = data[EMAIL_ID_STRING_ARRAY[j]]
-              ? data[EMAIL_ID_STRING_ARRAY[j]][displayHour]
-              : [];
+            const emailId = EMAIL_IDS[j - 1];
+            let meetings = [];
+
+            if (emailId === "email1@gmail.com") {
+              meetings = data1[displayHour] || [];
+            } else if (emailId === "email2@gmail.com") {
+              meetings = data2[displayHour] || [];
+            }
+
+            const meetingText = meetings.length > 0 ? meetings.join(", ") : "";
+
             cells.push(
               <td key={`col-${j}`} style={styles.cell}>
-                {/* demo@example.com */}
-                <Meetings meetings={meetings || []} />
+                {meetingText}
               </td>
             );
           }
