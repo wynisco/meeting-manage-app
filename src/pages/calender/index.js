@@ -2,12 +2,13 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import "./calender.css";
 import DatePicker from "../../components/datePicker";
-import EMAIL_IDS from "../../constants/emailIds";
+import EMAIL_IDS, { EMAIL_ID_STRING_ARRAY } from "../../constants/emailIds";
 import useGetQuery from "../../hooks/getQuery.hook.js";
 import { apiUrls } from "../../apis/urls";
+import Meetings from "./meetings";
 
 export default function Calender() {
-  const { getQuery, loading, data: { data = [] } = [] } = useGetQuery();
+  const { getQuery, loading, data = {} } = useGetQuery();
   const [date, setDate] = useState(new Date());
   const [dataList, setDataList] = useState([]);
 
@@ -35,7 +36,7 @@ export default function Calender() {
 
   const Table = () => {
     const col = EMAIL_IDS.length + 1;
-    const row = 13;
+    const row = 24;
 
     const renderTableHeader = () => {
       const headers = ["Timing"];
@@ -58,23 +59,29 @@ export default function Calender() {
         const cells = [];
 
         for (let j = 0; j < col; j++) {
+          let displayHour = i + 1;
           if (j === 0) {
             // Render row label
-            let displayHour = i + 9;
-            if (displayHour > 12) {
-              displayHour -= 12;
-            }
+
+            // if (displayHour > 12) {
+            //   displayHour -= 12;
+            // }
 
             cells.push(
               <td key={`col-${j}`} style={styles.cell}>
-                {`${displayHour}am`}
+                {`${displayHour}`}
               </td>
             );
           } else {
             // Render Demo Email ID cells
+            // console.log(data, "datadatadata");
+            const meetings = data[EMAIL_ID_STRING_ARRAY[j]]
+              ? data[EMAIL_ID_STRING_ARRAY[j]][displayHour]
+              : [];
             cells.push(
               <td key={`col-${j}`} style={styles.cell}>
-                demo@example.com
+                {/* demo@example.com */}
+                <Meetings meetings={meetings || []} />
               </td>
             );
           }
@@ -108,7 +115,7 @@ export default function Calender() {
         <div className="font-weight-bold h4">Zoom Ledger</div>
       </div>
       <div className=" mx-2 mb-3 d-flex justify-content-center">{Table()}</div>
-      <div>sdf+ {data}</div>
+      {/* <div>sdf+ {data}</div> */}
     </>
   );
 }
