@@ -7,13 +7,13 @@ import useGetQuery from "../../hooks/getQuery.hook.js";
 import { apiUrls } from "../../apis/urls";
 
 export default function Calender() {
-  const { getQuery, loading, data: { data = [] } = {} } = useGetQuery();
+  const { getQuery, loading, data: { data = [] } = [] } = useGetQuery();
   const [date, setDate] = useState(new Date());
   const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
     getQuery({
-      url: apiUrls.getMeetingsByHour,
+      url: apiUrls.getMeetings,
       options: {
         headers: {
           email: "data@wynisco.com",
