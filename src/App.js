@@ -7,9 +7,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Calender />} />
         <Route path="/create-meeting/:email" element={<Form />} />
-        <Route path="/calender" element={<Calender />} />
+        <Route path="/blocks" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
