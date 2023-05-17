@@ -14,13 +14,13 @@ export default function Form() {
   const { email } = useParams();
 
   const [topic, setTopic] = useState("");
-  const [duration, setDuration] = useState();
+  const [duration, setDuration] = useState("60");
   const [startTime, setStartTime] = useState("");
   const [password, setPassword] = useState("");
 
   const clear = () => {
     setTopic("");
-    setDuration("");
+    setDuration("60");
     setStartTime("");
     setPassword("");
   };
@@ -29,6 +29,7 @@ export default function Form() {
   const error = () => toast.error("All Fields are required");
 
   const createMeets = async () => {
+    console.log(startTime, new Date(startTime), "startTimestartTime");
     if (!(topic && duration && startTime)) {
       error();
       return 0;
@@ -43,7 +44,7 @@ export default function Form() {
       postData: {
         topic: topic,
         type: 2,
-        start_time: new Date(startTime),
+        start_time: startTime + ":00",
         duration: duration,
         timezone: "Asia/Kolkata",
         password: password,

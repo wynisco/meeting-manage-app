@@ -1,0 +1,28 @@
+td {
+  width: 300px;
+  padding: 0px !important;
+  /* display: block; */
+}
+
+.main-container {
+  overflow-x: hidden;
+}
+
+.table-container {
+  padding: 20px;
+  overflow-x: scroll;
+}
+
+.hour-cell {
+  border: 1px solid black;
+  width: 50px;
+  text-align: center;
+}
+
+.header-cell {
+  border: 1px solid black;
+  text-align: center;
+  background-color: #eb4034;
+  /* flex-direction: row;
+  display: flex; */
+}

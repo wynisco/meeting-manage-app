@@ -6,20 +6,24 @@ import EMAIL_IDS, { EMAIL_ID_STRING_ARRAY } from "../../constants/emailIds";
 import useGetQuery from "../../hooks/getQuery.hook.js";
 import { apiUrls } from "../../apis/urls";
 import Meetings from "./meetings";
+import Loader from "../../components/loader";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 export default function Calender() {
   const { getQuery, loading, data = {} } = useGetQuery();
   const [date, setDate] = useState(new Date());
-  const [dataList, setDataList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const formattedDate = moment(date).format("yyyy-MM-DD");
     getQuery({
-      url: apiUrls.getMeetings,
-      options: {
-        headers: {
-          email: "data@wynisco.com",
-        },
-      },
+      url: apiUrls.getMeetingsByHour + `?page_size=200&date=${formattedDate}`,
+      // options: {
+      //   headers: {
+      //     email: "data@wynisco.com",
+      //   },
+      // },
     });
     console.log(data);
   }, [date]);
@@ -30,31 +34,28 @@ export default function Calender() {
     },
     cell: {
       border: "1px solid black",
-      padding: "10px",
     },
   };
 
   const Table = () => {
-    const EMAIL_IDS = ["email1@gmail.com", "email2@gmail.com"]; // Replace with your email IDs
     const col = EMAIL_IDS.length + 1;
-    const row = 25;
-
-    const data1 = {
-      6: ["meeting1", "meeting2"],
-      7: ["meeting1"],
-    }; // Replace with your actual data for email1@gmail.com
-
-    const data2 = {
-      6: ["meeting3", "meeting4"],
-      7: ["meeting2", "meeting3"],
-    }; // Replace with your actual data for email2@gmail.com
+    const row = 24;
 
     const renderTableHeader = () => {
-      const headers = ["Time", ...EMAIL_IDS];
+      const headers = ["Hour"];
+
+      for (let i = 0; i < EMAIL_IDS.length; i++) {
+        headers.push(EMAIL_IDS[i].email);
+      }
 
       return headers.map((header, index) => (
-        <th key={index} style={styles.cell}>
-          {header}
+        <th key={index} className="header-cell">
+          {header}{" "}
+          {index > 0 ? (
+            <a href={"/create-meeting/" + header} target="_blacnk">
+              Add
+            </a>
+          ) : null}
         </th>
       ));
     };
@@ -69,26 +70,25 @@ export default function Calender() {
           let displayHour = i + 1;
           if (j === 0) {
             // Render row label
+
+            // if (displayHour > 12) {
+            //   displayHour -= 12;
+            // }
+
             cells.push(
-              <td key={`col-${j}`} style={styles.cell}>
+              <td key={`col-${j}`} className="hour-cell">
                 {`${displayHour}`}
               </td>
             );
           } else {
-            const emailId = EMAIL_IDS[j - 1];
-            let meetings = [];
-
-            if (emailId === "email1@gmail.com") {
-              meetings = data1[displayHour] || [];
-            } else if (emailId === "email2@gmail.com") {
-              meetings = data2[displayHour] || [];
-            }
-
-            const meetingText = meetings.length > 0 ? meetings.join(", ") : "";
-
+            // Render Demo Email ID cells
+            // console.log(data, "datadatadata");
+            const meetings = data[EMAIL_ID_STRING_ARRAY[j - 1]]
+              ? data[EMAIL_ID_STRING_ARRAY[j - 1]][displayHour]
+              : [];
             cells.push(
               <td key={`col-${j}`} style={styles.cell}>
-                {meetingText}
+                <Meetings meetings={meetings || []} />
               </td>
             );
           }
@@ -111,18 +111,17 @@ export default function Calender() {
   };
 
   return (
-    <>
+    <div className="main-container">
+      {loading ? <Loader /> : null}
       <div className="d-flex justify-content-between align-items-center mx-4 my-2">
-        <div className="">
+        <div>
           <DatePicker date={date} onChange={setDate} />
-          <div className="mt-3">
-            <a href="/">Listing View</a>
-          </div>
         </div>
         <div className="font-weight-bold h4">Zoom Ledger</div>
       </div>
-      <div className=" mx-2 mb-3 d-flex justify-content-center">{Table()}</div>
-      {/* <div>sdf+ {data}</div> */}
-    </>
+      <div className="table-container">
+        <Table />
+      </div>
+    </div>
   );
 }
