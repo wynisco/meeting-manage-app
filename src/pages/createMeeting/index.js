@@ -18,6 +18,12 @@ export default function Form() {
   const [startTime, setStartTime] = useState("");
   const [password, setPassword] = useState("");
 
+  const isTimeInPast = (time) => {
+    const selectedTime = new Date(time).getTime();
+    const currentTime = new Date().getTime();
+    return selectedTime < currentTime;
+  };
+
   const clear = () => {
     setTopic("");
     setDuration("60");
@@ -145,7 +151,7 @@ export default function Form() {
           <button
             className="btn btn-primary submit"
             type="button"
-            disabled={loading ? true : false}
+            disabled={loading ? true : false || isTimeInPast(startTime)}
             onClick={() => {
               createMeets();
             }}
