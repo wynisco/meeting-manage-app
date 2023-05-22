@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 export default function Calender() {
   const { getQuery, loading, data = {} } = useGetQuery();
   const [date, setDate] = useState(new Date());
+  const currentDate = new Date();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function Calender() {
       // },
     });
     console.log(data);
+    console.log(date);
   }, [date]);
 
   const styles = {
@@ -52,9 +54,14 @@ export default function Calender() {
         <th key={index} className="header-cell">
           {header}{" "}
           {index > 0 ? (
-            <a href={"/create-meeting/" + header} target="_blacnk">
-              Add
-            </a>
+            <>
+              {new Date(date) == currentDate ? null : new Date(date) >
+                currentDate ? (
+                <a href={"/create-meeting/" + header} target="_blacnk">
+                  Add
+                </a>
+              ) : null}
+            </>
           ) : null}
         </th>
       ));
