@@ -55,8 +55,8 @@ export default function Calender() {
           {header}{" "}
           {index > 0 ? (
             <>
-              {new Date(date) == currentDate ? null : new Date(date) >
-                currentDate ? (
+              {new Date(date).toISOString().split("T")[0] >=
+              currentDate.toISOString().split("T")[0] ? (
                 <a href={"/create-meeting/" + header} target="_blacnk">
                   Add
                 </a>
