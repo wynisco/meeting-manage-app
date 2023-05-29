@@ -18,7 +18,7 @@ const Meetings = ({ meetings = [] }) => {
             }}
           >
             <div>{meet?.topic}</div>
-            <div style={{ width: 70, textAlign: "right" }}>{duration} mins</div>
+            <div style={{ width: 70, textAlign: "right" }}>{meet?.duration} mins</div>
           </div>
         );
       })}
