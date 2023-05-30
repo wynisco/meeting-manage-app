@@ -14,6 +14,9 @@ const EMAIL_IDS = [
   {
     email: "react@wynisco.com",
   },
+  {
+    email: "wyniscouser2@gmail.com"
+  }
   // {
   //   email: "harshgupta.harry@gmail.com",
   // },
@@ -25,6 +28,7 @@ const EMAIL_ID_STRING_ARRAY = [
   "wyniscouser1@gmail.com",
   "sachin@wynisco.com",
   "react@wynisco.com",
+  "wyniscouser2@gmail.com"
   // "harshgupta.harry@gmail.com",
 ];
 export default EMAIL_IDS;
