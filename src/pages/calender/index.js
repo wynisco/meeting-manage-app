@@ -121,8 +121,16 @@ export default function Calender() {
     <div className="main-container">
       {loading ? <Loader /> : null}
       <div className="d-flex justify-content-between align-items-center mx-4 my-2">
-        <div>
-          <DatePicker date={date} onChange={setDate} minDate={new Date()} />
+        <div className="date-picker">
+          <button class="btn btn-outline-secondary">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+          </button>
+          <div>
+            <DatePicker date={date} onChange={setDate} minDate={new Date()} />
+          </div>
+          <button class="btn btn-outline-secondary">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </button>
         </div>
         <div className="font-weight-bold h4">Zoom Ledger</div>
       </div>

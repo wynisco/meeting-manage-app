@@ -26,3 +26,8 @@ td {
   /* flex-direction: row;
   display: flex; */
 }
+
+.date-picker{
+  display: flex;
+  margin-left: 45% !important;
+}

@@ -9,7 +9,7 @@ export default function TableForm() {
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center mx-4 my-2">
+      <div className="d-flex justify-content-between align-items-center mx-auto my-2">
         <div className="">
           <DatePicker date={date} onChange={setDate} />
           <div className="mt-3">

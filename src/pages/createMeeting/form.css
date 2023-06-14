@@ -36,6 +36,7 @@ td {
 }
 
 input {
+  text-align:center;
   font-size: 16px;
   line-height: 28px;
   padding: 8px 16px;
