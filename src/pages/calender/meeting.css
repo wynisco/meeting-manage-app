@@ -1,0 +1,34 @@
+.meetings_cell {
+  background: #0070f3;
+  color: white;
+  border-bottom: 2px solid white;
+  padding-right: 10;
+  padding-left: 10;
+  position: relative;
+}
+.meetings_cell_inside {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hide_details {
+  color: black;
+  position: absolute;
+  transform: translate(20%, 5%) scale(0);
+  transition: transform 0.1s;
+  transform-origin: bottom;
+  display: inline;
+  background: bisque;
+  z-index: 1;
+  width: 150%;
+  height: 100px;
+  padding: 1rem;
+  border: 1px solid black;
+  text-align: center;
+  font-size: larger;
+}
+
+.meetings_cell:hover .hide_details {
+  transform: translate(20%, 5%) scale(1);
+}
