@@ -9,6 +9,7 @@ import Meetings from "./meetings";
 import Loader from "../../components/loader";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import {addDaystoDate,subtractDaystoDate} from "../../helpers/datetimedays"
 
 export default function Calender() {
   const { getQuery, loading, data = {} } = useGetQuery();
@@ -16,8 +17,53 @@ export default function Calender() {
   const currentDate = new Date();
   const navigate = useNavigate();
 
+  
+ 
+  /// Bishesh and Sanajana added ////////////-------- this function runs when user press next button
+  function handleNext(){
+    const nextdate = addDaystoDate(date,1);
+    setDate(nextdate);
+    console.log(nextdate);
+
+    const formattedDate = moment(date).format("yyyy-MM-DD");
+    
+    getQuery({
+      url: apiUrls.getMeetingsByHour + `?page_size=200&date=${formattedDate}`,
+      // options: {
+      //   headers: {
+      //     email: "data@wynisco.com",
+      //   },
+      // },
+    });
+
+
+
+  }
+
+  function handlePrevious(){
+    const predate = subtractDaystoDate(date,1);
+    setDate(predate);
+    console.log(predate);
+
+    const formattedDate = moment(date).format("yyyy-MM-DD");
+    
+    getQuery({
+      url: apiUrls.getMeetingsByHour + `?page_size=200&date=${formattedDate}`,
+      // options: {
+      //   headers: {
+      //     email: "data@wynisco.com",
+      //   },
+      // },
+    });
+
+
+
+  }
+  
+  
   useEffect(() => {
     const formattedDate = moment(date).format("yyyy-MM-DD");
+    
     getQuery({
       url: apiUrls.getMeetingsByHour + `?page_size=200&date=${formattedDate}`,
       // options: {
@@ -122,14 +168,14 @@ export default function Calender() {
       {loading ? <Loader /> : null}
       <div className="d-flex justify-content-between align-items-center mx-4 my-2">
         <div className="date-picker">
-          <button class="btn btn-outline-secondary">
+          <button class="btn btn-outline-secondary" onClick={()=>handlePrevious()}>
             <i class="fa fa-angle-left" aria-hidden="true"></i>
           </button>
           <div>
             <DatePicker date={date} onChange={setDate} minDate={new Date()} />
           </div>
-          <button class="btn btn-outline-secondary">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          <button class="btn btn-outline-secondary"  onClick={()=>handleNext()}>
+            <i class="fa fa-angle-right" aria-hidden="true"  ></i>
           </button>
         </div>
         <div className="font-weight-bold h4">Zoom Ledger</div>
