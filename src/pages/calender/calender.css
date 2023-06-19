@@ -31,3 +31,9 @@ td {
   display: flex;
   margin-left: 45%;
 }
+
+.logo-top{
+  height: 75px;
+  width: 75px;
+  border-radius: 30%;
+}
