@@ -132,7 +132,8 @@ export default function Form() {
                 ></input>
               </td>
             </tr>
-            <tr>
+            {/* Sanjana - hid the password field */}
+            {/* <tr>
               <td>Password : </td>
               <td>
                 {" "}
@@ -145,7 +146,7 @@ export default function Form() {
                   onChange={(e) => setPassword(e.target.value)}
                 ></input>
               </td>
-            </tr>
+            </tr> */}
           </table>
 
           <button
