@@ -167,6 +167,7 @@ export default function Calender() {
     <div className="main-container">
       {loading ? <Loader /> : null}
       <div className="d-flex justify-content-between align-items-center mx-4 my-2">
+        <img className="logo-top" src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/1173/original/Wynisco_logo.png"/>
         <div className="date-picker">
           <button class="btn btn-outline-secondary" onClick={()=>handlePrevious()}>
             <i class="fa fa-angle-left" aria-hidden="true"></i>
